@@ -130,12 +130,11 @@ Trianglify.Pattern.prototype.generateCanvas = function () {
                  
     });    
     if (options.noiseIntensity > 0.01) {
-      for ( xn = 0; xn < canvas.width; xn++ ) {
-          for ( yn = 0; yn < canvas.height; yn++ ) {
+      for ( xn = 0; xn < canvas.width; xn=xn+2 ) {
+          for ( yn = 0; yn < canvas.height; yn=yn+2 ) {
              number = Math.floor( Math.random() * 60 );
-     
              context.fillStyle = "rgba(" + number + "," + number + "," + number + "," + opacity + ")";
-             context.fillRect(xn, yn, 1, 1);
+             context.fillRect(xn, yn, 2, 2);
           }
        }
     }                 

@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="/lair/favicon.png">
     <meta property="og:image" content="http://qrohlf.com/trianglify/examples/example1.jpg" />
 
-    <title>Trianglify by @qrohlf</title>
+    <title>Trianglify by @qrohlf - PNG export by @alx5962</title>
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans:400' type='text/css'>
 
     <style type="text/css">
@@ -107,13 +107,13 @@
     <body>
         <div class="container">
             <div class="box">
-                <p>Trianglify is a javascript library for generating colorful triangle meshes that can be used as SVG images and CSS backgrounds.</p>
+                <p>Trianglify is a javascript library for generating colorful triangle meshes that can be used as SVG/PNG images and CSS backgrounds.</p>
                 <p>Trianglify is open source software. Check it out on <a href="https://github.com/qrohlf/trianglify">Github</a>!</p>
                 <p>Made by <a href="http://qrohlf.com/">Quinn Rohlf</a></p>
                 <p>
                     <a href="#" id="button" class="btn box">Click for a new pattern</a>
-                    <a href="#" id="saveas" target="_blank" class="download btn box" title="right click > save as svg" download="trianglify-background.svg">SVG</a>
-                    <!-- <a href="https://cloudconvert.org/svg-to-png" target="_blank" class="download btn box">PNG</a> -->
+                    <a href="#" id="saveas" target="_blank" style="display:none;" class="download btn box" title="right click > save as svg" download="trianglify-background.svg">SVG</a>
+                    <a href="#" id="saveas2" target="_blank" class="download btn box" title="right click > save as png" download="trianglify-background.png">PNG</a>
                 </p>
                 <p>Have a project? I currently have some openings and am looking for small to medium sized web development projects. <a href="mailto:qr@qrohlf.com">Send me an email</a>!</p>
                 <div id="controls" class="hidden">
@@ -121,6 +121,7 @@
                         <li>Noise: <a href="#" id="subtractnoise" class="btn box small">-</a><span id="noise">0</span><a href="#" id="addnoise" class="btn box small">+</a></li>
                         <li>Cellsize: <a href="#" id="subtractcellsize" class="btn box small">-</a><span id="cellsize">0</span><a href="#" id="addcellsize" class="btn box small">+</a></li>
                         <li>Cellpadding: <a href="#" id="subtractcellpadding" class="btn box small">-</a><span id="cellpadding">0</span><a href="#" id="addcellpadding" class="btn box small" title="cellpadding must be smaller than cellsize/2">+</a></li>
+                        <!-- <li>Export: <a href="#" id="outputpng" class="btn box small">PNG</a></li> -->
                     </ul>
                     <p>Note: noise effect will cause rendering to take longer</p>
                 </div>
@@ -136,9 +137,10 @@
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <script src="trianglify.js"></script>
         <script>
-        var t = new Trianglify({noiseIntensity: 0});
+        var t = new Trianglify({noiseIntensity: 0,format:"png"});
         var button = document.getElementById('button'),
             saveas = document.getElementById('saveas'),
+            saveasPNG = document.getElementById('saveas2'),
             subtractnoise = document.getElementById('subtractnoise'),
             addnoise = document.getElementById('addnoise'),
             noise_display = document.getElementById('noise'),
@@ -151,6 +153,8 @@
             toggle_controls = document.getElementById('togglecontrols'),
             controls = document.getElementById('controls'),
             prevheight = height();
+            
+        //var btnPNG = document.getElementById('button');
 
         button.onclick = function() {
             recolor();
@@ -158,11 +162,11 @@
             return false;
         };
         addnoise.onclick = function() {
-            noise(0.2);
+            noise(0.1);
             return false;
         };
         subtractnoise.onclick = function() {
-            noise(-0.2);
+            noise(-0.1);
             return false;
         };
         addcellsize.onclick = function() {
@@ -193,7 +197,7 @@
 
         function heightChange() {
             if (height() != prevheight) {
-                console.log("height changed from "+prevheight+" to "+height());
+                //console.log("height changed from "+prevheight+" to "+height());
                 prevheight = height();
                 redraw();
             };
@@ -202,10 +206,11 @@
         redraw();
 
         function redraw() {
-            console.log("drawing "+document.body.clientWidth+"x"+height())
+            //console.log("drawing "+document.body.clientWidth+"x"+height())
             var pattern = t.generate(document.body.clientWidth, height());
             document.body.setAttribute('style', 'background-image: '+pattern.dataUrl);
             saveas.setAttribute('href', pattern.dataUri);
+            saveasPNG.setAttribute('href', pattern.dataUri);
             noise_display.innerHTML = t.options.noiseIntensity.toFixed(1);
             cellsize_display.innerHTML = t.options.cellsize.toFixed(0);
             cellpadding_display.innerHTML = t.options.cellpadding.toFixed(0);
@@ -271,6 +276,9 @@
               return existingIndex >= 0;
             }
         }
+        </script>
+        <!-- 
+        <script>        
         // analytics
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -280,5 +288,6 @@
         ga('send', 'pageview');
         </script>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        -->
     </body>
 </html>
