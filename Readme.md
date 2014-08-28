@@ -1,45 +1,24 @@
-# Trianglify
+# Trianglify - PNG Edition
 
-Trianglify is a library that I wrote to generate nice SVG background images like this one:
+Trianglify is a library to generate SVG/PNG background images like this one:
 
 ![example](example.jpg)
 
 It was inspired by [btmills/geopattern](https://github.com/btmills/geopattern), and uses [d3.js](http://d3js.org) to build the polygons and SVG and SVG filters for rendering. It also includes the [colorbrewer](http://bl.ocks.org/mbostock/5577023) color palette library to get you up and running quickly. It was written in a single day because I got fed up with Adobe Illustrator.
 
-# Demo:
+This is a fork of the qrohlf's Trianglify library: http://qrohlf.com/trianglify 
 
-**Official:**  
-http://qrohlf.com/trianglify
 
-**More:**  
-- [@nixterrimus](https://github.com/nixterrimus) has a nice demo app that lets you modify the parameters and choose between the built-in color palettes: [link](http://nixterrimus.github.io/Triangle-Play-App/) ([source](https://github.com/nixterrimus/Triangle-Play-App))
-- [@alssndro](https://github.com/alssndro) put together a version that lets you choose from the top ColourLovers palettes: [link](http://alssndro.github.io/trianglify-background-generator/) ([source](https://github.com/alssndro/trianglify-background-generator))
-
-*If you've built something cool with Trianglify, shoot me an email (qr@qrohlf.com) and I'll add it to the list!*
-
-# Getting Trianglify
-Trianglify is available via Bower
+# Getting Trianglify as a zip archive
 
 ```bash
-bower install trianglify
-```
-
-Or as a zip archive
-
-```bash
-https://github.com/qrohlf/trianglify/archive/gh-pages.zip
+https://github.com/alx5962/trianglify/archive/gh-pages.zip
 ```
 
 Or you can simply clone the repo
 
 ```bash
-git clone https://github.com/qrohlf/trianglify.git
-```
-
-Or if you're using nodejs
-
-```bash
-npm install trianglify
+git clone https://github.com/alx5962/trianglify
 ```
 
 # Usage:
@@ -141,16 +120,14 @@ x_gradient | an array of colors to use to construct a gradient for the x-axis | 
 y_gradient | an array of colors to use to construct a gradient for the y-axis | array of colors in hexadecimal string format (i.e. `["#961E00", "#FF0000", "#EEEEEE"]`) | x_gradient, brightened by a factor of 0.5
 fillOpacity | sets the opacity of the inside of the cells | 0 to 1 | 1
 strokeOpacity | sets the opacity of the outline of the cells | 0 to 1 | 1
-
-# Contributing
-
-Pull requests are welcome! Fork the repo on [Github](https://github.com/qrohlf/trianglify/fork).
+format | export format | png or svg | svg
 
 # License
 
 Trianglify is licensed under the GPLv3 License. Happy hacking!
 
 # Credits
+- Quinn Rohlf: Trianglify library 
 - Trianglify makes use of the excellent [d3.js](https://github.com/mbostock/d3) visualization library by Michael Bostock.
 - Trianglify includes color specifications and designs developed by Cynthia Brewer (http://colorbrewer.org/).
 - Trianglify uses the excellent (and free!) [GitHub Pages](https://pages.github.com) for hosting. 
